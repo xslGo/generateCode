@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wah.kitty.labour.mapper.LabourJobMapper">
+  <resultMap id="BaseResultMap" type="com.wah.kitty.labour.model.LabourJob">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="j_name" jdbcType="VARCHAR" property="jName" />
+    <result column="j_abilitydesc" jdbcType="VARCHAR" property="jAbilitydesc" />
+    <result column="j_dailywage" jdbcType="DECIMAL" property="jDailywage" />
+    <result column="j_logourl" jdbcType="VARCHAR" property="jLogourl" />
+    <result column="j_abilitytag" jdbcType="VARCHAR" property="jAbilitytag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, j_name, j_abilitydesc, j_dailywage, j_logourl, j_abilitytag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_labour_job
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_labour_job
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wah.kitty.labour.model.LabourJob">
+    insert into t_labour_job (id, j_name, j_abilitydesc, 
+      j_dailywage, j_logourl, j_abilitytag
+      )
+    values (#{id,jdbcType=INTEGER}, #{jName,jdbcType=VARCHAR}, #{jAbilitydesc,jdbcType=VARCHAR}, 
+      #{jDailywage,jdbcType=DECIMAL}, #{jLogourl,jdbcType=VARCHAR}, #{jAbilitytag,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wah.kitty.labour.model.LabourJob">
+    insert into t_labour_job
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="jName != null">
+        j_name,
+      </if>
+      <if test="jAbilitydesc != null">
+        j_abilitydesc,
+      </if>
+      <if test="jDailywage != null">
+        j_dailywage,
+      </if>
+      <if test="jLogourl != null">
+        j_logourl,
+      </if>
+      <if test="jAbilitytag != null">
+        j_abilitytag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jName != null">
+        #{jName,jdbcType=VARCHAR},
+      </if>
+      <if test="jAbilitydesc != null">
+        #{jAbilitydesc,jdbcType=VARCHAR},
+      </if>
+      <if test="jDailywage != null">
+        #{jDailywage,jdbcType=DECIMAL},
+      </if>
+      <if test="jLogourl != null">
+        #{jLogourl,jdbcType=VARCHAR},
+      </if>
+      <if test="jAbilitytag != null">
+        #{jAbilitytag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wah.kitty.labour.model.LabourJob">
+    update t_labour_job
+    <set>
+      <if test="jName != null">
+        j_name = #{jName,jdbcType=VARCHAR},
+      </if>
+      <if test="jAbilitydesc != null">
+        j_abilitydesc = #{jAbilitydesc,jdbcType=VARCHAR},
+      </if>
+      <if test="jDailywage != null">
+        j_dailywage = #{jDailywage,jdbcType=DECIMAL},
+      </if>
+      <if test="jLogourl != null">
+        j_logourl = #{jLogourl,jdbcType=VARCHAR},
+      </if>
+      <if test="jAbilitytag != null">
+        j_abilitytag = #{jAbilitytag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wah.kitty.labour.model.LabourJob">
+    update t_labour_job
+    set j_name = #{jName,jdbcType=VARCHAR},
+      j_abilitydesc = #{jAbilitydesc,jdbcType=VARCHAR},
+      j_dailywage = #{jDailywage,jdbcType=DECIMAL},
+      j_logourl = #{jLogourl,jdbcType=VARCHAR},
+      j_abilitytag = #{jAbilitytag,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
